@@ -1,0 +1,22 @@
+PROBLEMA No. 5
+- En java, un arreglo como el siguiente:
+        int b[]={3,2,1,5,7,3,0,10,5};
+  se puede puede declarar dentro del metodo "main" o fuera de el, pero dentro de la clase.
+- Si se declara fuera del metodo "main", se debera anteponer la palabra "static", como ocurre
+  con el metodo "main". Este es un caso especial relativo a la implementacion de java.
+- El significado de "static" y otra forma de crear aplicaciones se veran mas adelante.
+- Los arreglos en Java tienen asociada una variable que siempre tiene el numero de elementos de este,
+  El nombre de la variable es el nombre del arreglo seguido de '.' y la palabra lenght. en ejemplo
+  presentado arriba seria "b.length"
+
+Meta 1: usando la declaracion mas arriba de forma global en clase donde se encuentra "main",
+        hacer una aplicacion java que obtenga e imprima el promedio (resultado flotante y retorno de carro)
+
+       - Los valores y el numero de elementos del arreglo son cambiados por otros al momento de la prueba.
+       - Se debe usar el mismo nombre del arreglo.
+       - Solo debe haber sentencias en el metodo main, no agregar otra funcion.
+       - Se debe usar ciclo for.
+       - Para hacer la conversion de tipo entero a flotante, se hace igual que en C, se usa 'casting' (moldaje).
+         Por ejemplo:
+            int x = 3;
+            float z = (float)x/(float)2;  //no es necesario poner casting en los dos operandos

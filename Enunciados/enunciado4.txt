@@ -1,0 +1,13 @@
+PROBLEMA No. 4
+- En java, para declarar un arreglo con valores iniciales se puede hacer de la siguiente namera:
+  int R[]={3,2,1,5,7,3,0,10};
+  
+
+Meta 1: usando la declaracion mas arriba de manera local al metodo main (declarada dentro), 
+        hacer una aplicacion java que obtenga e imprima el mayor de los numeros del arreglo.
+       - Los arreglos en Java tienen asociada una variable que siempre tiene el numero de elementos de este,
+         El nombre de la variable es el nombre del arreglo seguido de '.' y la palabra length. En el caso
+         presentado arriba seria "R.length"
+       - La plataforma cambia los numeros del arreglo por otros al momento de la prueba y el numero de elementos.
+       - Se debe usar el mismo nombre del arreglo.
+       - Solo debe hacer sentencias dentro del metodo main.

@@ -1,0 +1,14 @@
+PROBLEMA No. 3
+-   El texto y los valores imprimibles de las variables se pueden concatenar usando '+' de variadas formas.
+    Por ejemplo:
+
+            System.out.println("blabla " + variable);
+
+   imprime en pantalla la palabra "blabla", el blanco que va antes de las ultimas comillas y el valor de la variable.
+
+ 
+Meta 1: Se pide hacer una aplicacion Java que imprima la suma de los 100  primeros enteros impares de la forma siguiente:
+                             La suma es: xxxx
+        La linea se debe imprimir sin espacio delante de 'L' y debe terminar en '\n'.
+        Se debe obtener el resultado acumulando en una variable dentro de un ciclo iterativo, lo que es chequeado
+        por la plataforma.

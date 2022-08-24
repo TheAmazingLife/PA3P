@@ -1,0 +1,52 @@
+PROBLEMA No. 1
+- En Java se usa la palabra "metodo" para referirse a lo que en C se le llama "función".
+- Mucho de lo que sabes sobre el uso de "funciones" en C es aplicable a los "metodos" (parametros, retorno, etc) 
+- Una aplicacion Java es un programa que inicia su ejecucion llamando al "metodo" main,
+  que es el equivalente a la funcion main de un programa C.
+
+- La diferencia principal con C es que Java es un lenguaje orientado al objeto, por este motivo,
+  el "metodo main" esta incluido dentro del cuerpo de una "clase" como sucede con el siguiente caso
+  de programa minimo ejemplo:
+
+   public class A { //linea inicio de la clase
+      public static void main(String[] args){ 
+         //las sentencias del metodo van en este lugar
+      } 
+   } //linea fin de la clase
+
+
+- Aunque al trabajar con Netbeans sera transparente para ti, debes saber que Java exige que el archivo
+  se llame igual que la clase declarada como "public", en el ejemplo arriba el archivo se llamaria "A.java" y
+  este se encontraria en la carpeta:
+    Documentos -+
+                |- NetBeansProjects -+
+                                     |- A -+                       //nombre proyecto
+                                           |- src -+               /carpeta de archivos fuente
+                                                   |- a -+         //nombre del proyecto en minusculas
+                                                         |-A.java  //archivo en el que esta metodo main y la clase A
+   
+  debes notar que la clase donde está el metodo main se llama igual que el proyecto que contruyes (en el ejemplo este caso A)
+ 
+- Todos los metodos deben estar dentro del cuerpo de una "clase", en una clase puede haber varios "metodos" 
+  y una aplicacion puede estar compuesta de varias clases.
+
+- El nombre de la clase usado en el enunciado mas arriba es "A". Los nombres son identificadores
+  alfanumericos. Aunque no es obligatorio, por convencion los nombres se inician con mayuscula
+
+- en Netbeans debes crear un proyecto, el nombre del proyecto sera el nombre de la clase principal,
+  en la que se encuentra el metodo "main".
+
+- Netbeans crea el proyecto y genera el archivo fuente con la clase principal, le agrega algunos comentarios
+  que es mejor borrar para este aprendizaje.
+
+- Los nombres de las clases usados en los enunciados de problemas de esta PA3P puedes cambiarlos
+  por otros a tu eleccion, a menos que se te pida explicitamente que uses uno especifico. 
+
+- Otra diferencia entre C y Java es la forma en que se imprimen los resultados en pantalla,
+  la funcion 'printf' es reemplazada por 'System.out.print' o 'System.out.println'. Si usas la primera, debes
+  incluir el '\n' en el string, como en C. Si usas la segunda, el '\n' lo agrega automaticamente.
+  Mas diferencias se iran explicando en clases.
+
+
+Meta 1: Se te pide crear una aplicacion Java minima que imprima: ViVa ChIlE
+        finalizada con retorno de carro ('\n'). El primer caracter es 'V'.

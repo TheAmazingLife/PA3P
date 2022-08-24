@@ -1,0 +1,23 @@
+PROBLEMA No. 2
+- Las variables se declaran como en C, por ejemplo: 
+   - int x;  //crea una variable 'x' de tipo 'int'. Lo que se almacena en 'x' es un entero, como en C 
+   - int r[];//crea una "referencia" o "puntero" a memoria donde los enteros se almacenan en forma contigua.
+   - float f;
+   - boolean b; //esta variable puede alamacenar los valores "true" o "false". En C el entero '0' es falso
+     y mayor que cero es verdadero.
+
+- Las variables siempre se declaran dentro de una clase o dentro de un metodo. Si declaran dentro de la clase pero
+  fuera de metodos, son compartidas por todos los metodos de la clase. No existen variables globales declaradas
+  fuera de las clases.
+
+- Java es un lenguaje derivado de C, y sus estructuras de control "for", "while", "switch", "if", etc. son iguales.
+- una diferencia al usar contantes booleanas:
+   while(true){---} es quivalente a decir while(1){---}
+
+- Para imprimir en pantalla usando System.out.print o System.out.println,
+  no es necesario especificar un formato segun el tipo de variable, basta con poner:
+  System.out.println(variable)  y se imprimira en pantalla el valor de esta.
+
+ 
+Meta 1: Se te pide crear una aplicacion Java que imprima los numeros enteros de -20 a 20, uno por linea (un retorno al final
+        de cada uno).

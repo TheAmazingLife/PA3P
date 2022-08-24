@@ -1,0 +1,39 @@
+PROBLEMA No. 9001
+- En java, una class reemplaza el concepto del lenguaje C de estructura, una class se declara como sigue:
+  class ComoStruct {
+
+  }
+- la palabra 'class' va en lugar de struct, 'ComoStruct' es el nombre que uno elije, pero la usaras en este problema
+- dentro de las { } puedes declarar las variables de manera normal como en las "struct" del lenguaje C
+  por ejemplo, un arreglo como  int ar[]={3,2,1,5,7,3,0,10,5}; se puede poner dentro de una class y queda:       
+
+   class ComoStruct {
+       int ar[]={3,2,1,5,7,3,0,10,5};
+   }
+   esta class no debe ir dentro de la class donte esta main
+
+- para crear una instancia de esta clase, en Java se hace de la siguiente:
+       ComoStruct cs = new ComoStruct(); //cs es una variable puntero y su contenido es la direccion al objeto particular creado
+  
+- puedes crear una instancia en el metodo "main" o en cualquier parte del programa y para referirte a los elementos
+  del arreglo dentro de esa instancia de la class, basta con usar la variable "cs" seguida de un '.' y el elemento.
+  Por ejemplo la siguiente sentencia copia el contenido de un elemento de arreglo en otro: cs.ar[2] = cs.ar[3];
+ 
+- en Java, las class son mas complejas que lo del ejemplo, pero eso lo iras aprendiendo mas adelante
+
+- Los arreglos en Java tienen asociada una variable que siempre tiene el numero de elementos de este,
+  El nombre de la variable es el nombre del arreglo seguido de '.' y la palabra "lenght". En el ejemplo
+  presentado arriba seria "ar.length"
+
+- recuerda que para obtener el resto de una division enteros, puedes usar el operando %, es decir lo usas en lugar de /
+
+
+Meta 1: usando la misma declaracion mas arriba de la class ComoSruct, deberas lograr hacer que el metodo "main"
+        de una aplicacion java imprima solo los elementos impares del arreglo separados por ','
+        y termine en '\n'.
+
+
+       - Los valores y el numero de elementos del arreglo son cambiados por otros al momento de la prueba.
+       - Se debe usar el mismo nombre de la class y del arreglo arriba.
+       - Solo debe haber sentencias en el metodo main, no agregar otra funcion (metodo).
+       - Se debe usar ciclo for.

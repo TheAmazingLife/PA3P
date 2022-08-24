@@ -1,0 +1,19 @@
+PROBLEMA No. 6
+- En java, un arreglo como el siguiente:
+        int R[]={3,2,1,5,7,3,0,10,5};
+  se puede puede declarar dentro del metodo "main" o fuera de el, pero dentro de la clase.
+- Si se declara fuera del metodo "main", se debera anteponer la palabra "static", como ocurre
+  con el metodo "main". Este es un caso especial relativo a la implementacion de java.
+- El significado de "static" y otra forma de crear aplicaciones se veran mas adelante.
+- Los arreglos en Java tienen asociada una variable que siempre tiene el numero de elementos de este,
+  El nombre de la variable es el nombre del arreglo seguido de '.' y la palabra lenght. en ejemplo
+  presentado arriba seria "R.length"
+
+Meta 1: usando la declaracion mas arriba de forma global en clase donde se encuentra "main",
+        hacer una aplicacion java que invierta los elementos del arreglo y los imprima separados por ','
+        y termine en '\n'. No se trata de imprimirlos al revés.
+
+       - Los valores y el numero de elementos del arreglo son cambiados por otros al momento de la prueba.
+       - Se debe usar el mismo nombre del arreglo arriba.
+       - Solo debe haber sentencias en el metodo main, no agregar otra funcion.
+       - Se debe usar ciclo for.
