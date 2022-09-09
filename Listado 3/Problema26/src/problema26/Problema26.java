@@ -39,7 +39,7 @@ class Deposito {
     private ArrayList<Bebida> al;
 
     public Deposito() {
-        al = new ArrayList();
+        al = new ArrayList<Bebida>();
     }
 
     public void addBebida(Bebida b) {
