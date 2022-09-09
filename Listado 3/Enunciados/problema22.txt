@@ -1,0 +1,74 @@
+PROBLEMA No. 22
+
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/22/tobobolas.jpg
+
+Enunciado: se desea construir una aplicacion Java que simule un tubo en el que se quieren meter pelotas. 
+Imaginaremos: 
+         - longitud del tubo = 2xdiametro  pelota
+         - diametro interior tubo = diametro pelota
+         - se pueden meter pelotas por extremo A o extremo B
+         - si el tubo esta lleno, al meter una pelota por un extremo, sale otra por el otro extremo
+         - supondremos que esta horizontal, eso significa que la pelota se queda donde la pones, aunque empuje a otra
+         - aunque el movimiento es continuo en la realidad, aca seran cambios bruscos de posicion
+Ver: Significado de parametros y tipo de retorno de metodos en clases OO
+
+Deberas completar la clase Tubo y la clase Pelota en el esqueleto de programa abajo:
+  - el metodo constructor Pelota recibe el numero de serie como parametro y lo almacena en propiedad private int
+  - el metodo dameTuSerie que retorna el numero de serie almacenado en propiedad private int
+  - cada instancia creada a partir la class Pelota debe tener un numero de serie  que se le pasa como parametro en el constructor
+
+  - el metodo constructor Tubo no necesita parametro, solo debe inicilizar en null punteros a Pelota
+  - recuerda que tener una propiedad puntero a Pelota "se interpreta" como que tiene una pelota en su interior
+  - tu decides si usas un arreglo de Pelota o variables simples, pero recuerda que solo pueden ser dos pelotas  
+  - se puede meter pelotas por ambos extremos usando los metodos: meteA o meteB
+  - meteA recibe una pelota por el extremo A pero retorna la pelota que sale por el extremo B, y viceversa
+  - meteA o meteB deben retornar null si no sale una pelota
+  - las pelotas no se sacan, solo salen si se metio una por el otro extremo que las expulsa afuera por falta de espacio
+  - se debe poder "ver" lo que hay dentro del tubo, para ello debes agregar el metodo vetTubo
+  - el metodo verTubo debe imprimir de la siguiente forma:
+                         A:[null,null]:B      //si esta vacio
+                         A:[null,1000]:B      //si se le metio una pelota por el lado B y tiene numero de serie 1000
+                         A:[12,13]:B          //los dos numeros de serie si esta lleno
+                         
+
+En el prototipo siguiente puedes cambiar el nombre del proyecto 'Main' al nombre que quieras
+
+public class Main {
+    public static void main(String[]args){
+        //pon tu codigo para probar aqui, pero puedes usar el codigo que aparece en la retroaliementacion que entrega PA3P
+    }
+}
+class Tubo {
+    //debes completar el codigo escribiendo el metodo constructor, las propiedades y metodos: meteA, meteB,verTubo
+}
+
+class Pelota {
+  //debes completar el codigo escribiendo el metodo constructor, la propiedad y metodo dameTuSerie
+  //debes preguntarte si cada pelota que creas con este molde debe incicializarse con numero de serie distinto
+  //debes imaginar que dameTuSerie es lo mismo que mirar el numero de serie impreso en la pelota por la fabrica
+}
+
+
+El esqueleto de programa arriba se representa en UML de la siguiente forma
+
+                 |          Aplicacion Main             |    //equivale al metodo "main"
+                 +---+------------------------------+---+    
+                    / \                            / \         
+                    \ /                            \ /      
+                     |                              |       
+                     |                              |
+          +----------+-----------+        +---------+-----------+
+          |        Tubo          |        |        Pelota       |
+          +----------------------+        +---------------------+
+          |  //propiedades aqui  |------->|  - int serie        | //hay una flecha que apunta a Pelota porque esa variable es puntero
+          +----------------------+        +---------------------+
+          | + Tubo               |        |  + Pelota           |
+          | + meteA y meteB      |        |  + int dameTuSerie  |
+          | + verTubo            |        +---------------------+
+          +----------------------+
+
+Instrucciones:
+   - se te deja la tarea de completar adecuadamente la clase Tubo y sus metodos
+   - tu debes poner codigo de prueba en main para ver si funciona
+   - en la retroalimentacion que te da PA3P te muestra sentencias de la pruebas que le hace a tu código y puedes usarlo si quieres
+   - PA3P solo prueba tus clases Pelota y Tubo, no main

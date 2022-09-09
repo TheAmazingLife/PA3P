@@ -1,0 +1,76 @@
+PROBLEMA No. 27
+
+
+Conceptos: diseño y contruccion incremental, conocer-a, contener-a.
+
+DEBES NOTAR: 
+    - que lo que crearas es el prototipo mas simple que se puede hacer de un Expendedor de Bebida software
+    - no tiene componentes internos tales como depositos para bebidas ni monedas
+    - por software puedes hacer "el milagro" de "fabricar" bebidas sin limite
+    - esto siempre es posible y recomendable cuando estas partiendo en la creación de un sistema OO software
+    - en los siguientes problemas y tarea deberas ir agregandole detalles, lo que te familiarizara con la metodologia de desarrollo incremental
+
+La idea principal es que consideres los siguientes pasos para hacer una aplicacion:
+
+1.- identificar las clases de objetos a implementar leyendo el enunciado de la aplicacion: son los sustantivos
+2.- crear las clases vacias: sin metodos publicos, solo el constructor (aun vacias se pueden instanciar)
+3.- ir agregando metodos publicos en la medida que se requieran, pueden estar vacios al principio
+4.- crear y probar objetos cada clase por separado desde main
+5.- ir probando desde main conjuntos de objetos
+6.- probar desde main la totalidad de objetos: prueba de sistema: NUNCA pruebes todo desde el pricipio, a menos que la aplicacion se de una clase
+
+Enunciado: 
+ El trabajo consiste en crear un expendedor de bebidas, que cada vez que reciba una moneda, retornara una nueva bebida.
+ Las monedas que reciba el expendedor serán descartadas, es decir, no hara nada con ellas. Las bebidas entregadas NO
+ llevaran numero de serie, pero deben ser objetos distintos cada vez. Es posible usar la misma moneda en cada compra, pero no lo hagas.
+ Otros detalles los encontraras en Meta 1, mas abajo.
+
+Observa:
+- que los sustantivos se transforman en clases en UML).
+- que a "main la puedes imaginarla como equivale a un comprador, aunque no esta presente en el enunciado,
+  pero se podria crear en una version futura si fuera requerido.
+
+Dado el enunciado anterior, el diagrama UML que lo representa es el siguiente:
+
+
+          |      Aplicacion Main      |  //equivale a la clase que SOLO contiene al metodo "main"
+          +--------------+-------+----+    
+                        / \     / \     //el diamante significa que "main" hace "new" de "Expendedor" y "Moneda"
+                        \ /     \ /     //main hace de comprador y consumidor de bebida
+                         |       |
+                         |       +--------------+
+           +-------------+------------+         |
+           |       Expendedor         |         |
+           +--------------------------+         |
+           | //no hay propiedad       |         | 
+           +--------------------------+         |
+           |  +Expendedor             |         |
+           |  +comprarBebida          +-----+   |  //Expendedor 'conoce a' Moneda solo mientras se ejecuta comprarBebida     
+           +---------+----------------+     |   |  //conocer significa que recibe el puntero como parametro
+                    / \                     |   |  //Expendedor se 'compone de' Bebida solo mientras se ejecuta comprarBebida
+                    \ /                     |   |  //componerse en esta caso significa que se hace "new"
+                     +                      |   |  //
+                     |                     \ /  |  //que no sea propiedad significa que no hay variable de clase para referencia
+           +---------+----------------+  +--+---+-------------+
+           |         Bebida           |  |     Moneda         |       
+           +--------------------------+  +--------------------+
+           | //no hay propiedad       |  | //no hay propiedad |
+           +--------------------------+  +--------------------+
+           |  +Bebida                 |  | +Moneda            |
+           |  +beber                  |  |                    |
+           +--------------------------+  +--------------------+
+
+
+
+Meta 1:  
+  -------------------------------       
+         - debes crear las clases descritas en el diagrama UML de arriba
+         - la clase expendora tiene un solo metodo publico que recibe una Moneda y retorna una Bebida
+         - cada Bebida cuesta exactamente una Moneda
+         - el metodo comprarBebida debe recibir la Moneda, no hacer nada con ella y retornar una Bebida nueva
+         - Expendor no tiene capacidad de almacenamiento (propiedades para almacenar Moneda ni Bebida) 
+         - no hay vuelto
+         - las Bebida's  no tienen numero de serie. pero recuerda que pueden ser diferenciadas por el puntero de cada objeto creado
+         - Bebida solo tiene un metodo publico, 'beber', que retorna (no imprime) un String con la palabra "gluglu"
+         - no debes imprimir nada en los metodos excepto en 'main' para probar tu Expendedor
+         

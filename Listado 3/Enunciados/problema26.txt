@@ -1,0 +1,97 @@
+PROBLEMA No. 26
+Conceptos: delegacion o composicion, encapsulamiento y reutilizacion, accesor (getter)
+
+"delegacion", es usar un objeto que "sub contrata" a otro objeto del que peraremos como si estuviera contenido dentro de el.
+Decimos que los compone y se declara "private" pasa a ser oculto o invisible.
+
+En este caso, el metodo main "cree" que el trabajo lo hace un objeto particular, pero este en realidad ese objeto solo llama
+a los metodo de otro objeto, que es el que realmente hace el trabajo.
+
+En este ejercicio hay objeto que aparenta hacer el trabajo o "intermediario", de clase "Deposito" y quien hace la pega de almacenar
+es "ArrayList". ArrayList es de la biblioteca Java y lo reutilizaras pero debe ser "private" o encapsulado. 
+"Reutilazar" significa que no lo creas tu, usas lo que ya existe.
+
+ArrayList:
+ - internamente opera como arreglo desde los elementos 0 al n-1
+ - si le retiras un elemento el arreglo se achica automaticamente en 1, si le agregas uno aumenta en 1: el metodo size() te dice cuantos hay
+ - es transparente para ti la manera en que opera internamente
+ - se encuentra en el paquete java.util de la API de Java, es una de la que solo usaremos algunos metodos
+ - para que tu programa pueda importar el paquete debes agregar la linea: import java.util.ArrayList despues de la linea package
+ - almacena objetos Element (Bebida es uno por defecto) y debes hacer casting para retirar de el.
+ - dos opciones:
+   1)
+     ArrayList al = new ArrayList();  // declaras y creas un objeto
+     al.add(...);                     // agrega un objeto de cualquier clase al final del arreglo lo que aumenta size en 1
+     Bebida b = (Bebida)al.remove(i); // usas casting, retira el elemento del ArrayList pero devuelve el puntero a este, el arreglo disminuye en 1
+   2) 
+     ArrayList<Bebida> al = new ArrayList<Bebida>(); //declara que solo almecenara Bebida
+     al.add(...);                    // idem opcion 1)
+     Bebida b = al.remove(i);        // no necesitas casting, idem 1)
+  - remove(i) : remueve el i-esimo elemento, corriendo los de indice mayor un lugar para llener hueco, retorna puntero, size disminuye en 1
+  - aunque en este ejercicio no se usa, ArrayList tiene el metodo get(i), que retorna el puntero pero no remueve el elemento
+
+
+prueba desde "main":
+        - crea un objeto de Deposito
+        - crea instancias de Bebida con numeros de serie distintos y las almacenas una a una en la unica instancia de Deposito
+        - retira las instancias de Bebida una a una e imprime su numero de serie para comprobar que salen en orden FIFO
+                - intenta retirar una Bebida adicional para comprobar que retorna null al estar vacio el Deposito
+
+
+          |      Aplicacion Main     |  //equivale la clase que contiene al metodo "main"
+          +-------------+-------+----+    
+                       / \     / \         +------------------+
+                       \ /     \ /         |      Bebida      | 
+                        |       |          +------------------+
+                        |       +----------|     -int         | //numero de serie
+                        |                  +------------------+
+                        |       +--------->|     +Bebida      | //es constructor recibe como parametro un int su numero de serie
+                        |       |       +->|     +getSerie    | //Deposito "conoce" a Bebida porque se le pasan por medio del metodo
+                        |       |       |  |     +beber       |
+                        |       |       |  +------------------+
+          +-------------+-------+----+  | 
+          |          Deposito        |  |  //nombre obligatorio de la nueva clase
+          +--------------------------+  |
+          |  -ArrayList              |  |  // '-': anteponer private para encapsular ocultando
+          +--------------------------+  |
+          |  +Deposito               |  |  //solo crea mediante new el objeto ArrayList
+          |  +addBebida              |  |  //debe recibir una Bebida como parametro (ArrayList almancena Object)
+          |  +getBebida              |  |  //debe retornar Bebida
+          |                          |  |
+          +-------------+------------+  |
+                       / \              |  //el diamante significa que "Deposito" hace "new" de "ArrayList"
+                       \ /              |
+                        |               |
+                        |               |
+          +-------------+------------+  |
+          |         ArrayList        |  |   //nombre de la clase importada de biblioteca java.util
+          +--------------------------+  |
+          |  -Element <Bebida>       +--+  //'-': anteponer private,  es casting a Bebida en otro formato
+          +--------------------------+
+          |  +ArrayList              |     //se ponen para referencia algunos de sus metodos: 
+          |  +add                    |     //agrega uno objeto 
+          |  +remove                 |     //retorna el puntero a una bebida y elimina el elemento i-esimo
+          |  +size                   |    
+          |  +get                    |     //retorna puntero a i-esimo, no remueve elemento
+          |  +otros metodos          |
+          +--------------------------+
+
+NOTAS:
+    - las flechas que salen de Deposito y ArrayList y llegan a Bebida son producidas cuando les pasas como parametro puntero a Bebida
+      y Depsoito "aparenta" almacenarlo pero se los pasa al ArrayList, que lo hace
+    - en esta ocacion se muestra en en UML detalles de ArrayList pero en adelante bastara que lo uses en tus trabajos solo con rectangulo
+      y nombre
+    - RECUERDA siempre este deposito porque deberas usar equivalentes muchas veces en este curso 
+    - tu NO escribes el codigo de ArrayList, pero puedes usarlo como si estubiera en tu programa, si haces lo siguiente:
+      despues de la linea package, agregas la linea: import java.util.ArrayList 
+
+
+Meta 1:  crear la aplicacion representada en el diagrama UML completando las clases de modo que:
+           - Deposito tenga como componente encapsulado a ArrayList (private: no se ve desde fuera de Deposito), usa la opcion 2, descrita mas arriba
+           - Deposito opere como un almacen FIFO: el primero que entra es el primero que sale
+           - addBebida pase su parametro a add del ArrayList
+           - getBebida llame a remove(i), i=0. (remove retorna el puntero y a la vez elimina el primer elemento, el de indice cero del ArrayList, disminuye el size())
+           - si no hay bebidas, Deposito debe retornar null 
+             (recuerda que null NO ES un String, es una constante que tiene valor 0x0 y se puede asignar a cualquier clase de puntero
+           - el metodo beber de Bebida lo debes puedes dejar vacio para este ejercicio: public void beber(){   }
+           - el metodo getSerie de Bebida debe funcionar correctamente

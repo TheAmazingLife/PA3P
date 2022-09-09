@@ -1,0 +1,94 @@
+PROBLEMA No. 21
+
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/21/cajapelota.jpg
+
+En Orientación al Objeto se usan variables para representar las propiedades tienen las diferentes clases de objeto.
+Si un objeto tiene entre sus propiedades una variable puntero a otra clase de objeto, "imaginamos" que contiene o esta compuesto por otro.
+
+Enunciado: se desea construir una aplicacion Java que simule envases de carton y pelotas. Cada envase de carton debe
+poder almacenar una sola pelota. Si se trata de meter otra pelota, no debe permitirlo. Si se saca la pelota, debe quedar
+vacia. Si la caja esta vacia y se intenta de sacar otra pelota, no debe permitirlo. Las pelotas tienen numero de serie.
+Ver: Significado de parametros y tipo de retorno de metodos en clases OO
+
+Deberas completar las clases EnvaseCarton y Pelota en el esqueleto de programa abajo:
+  - el metodo constructor Pelota recibe el numero de serie como parametro y lo almacena en propiedad private int
+  - el metodo dameTuSerie que retorna el numero de serie almacenado en propiedad private int
+  - cada instancia creada a partir de la class Pelota debe tener un numero de serie que se le pasa como parametro del constructor
+  - el metodo constructor EnvaseCarton no necesita parametro, solo debe inicializar en null el puntero a Pelota
+  - recuerda que tener una propiedad puntero a Pelota "se interpreta" como que tiene una pelota en su interior
+  - el metodo metePelota debe recibir un puntero a una Pelota y retornar null si la pudo almacenar y el mismo puntero si ya hay una pelota
+      - explicación sobre parametro y valor de retorno de este metodos:
+        - se entiende que este metodo es para meter la pelota a la caja y el parametro trae lo que se quiere que se meta al envase
+        - si retorna el mismo valor que trae el parametro (direccion) significa que no entro a la caja y es equivalente a quedar con la pelota en la mano
+        - sobre el significado de mantener copia del puntero despues de deshacese de la pelota u otros objetos se hara mayor reflexion en el curso
+  - el metodo damePelota debe retornar null si el envase esta vacio, el puntero a la Pelota si estaba lleno
+  - si se saca la Pelota del envase, este debe quedar vacio
+  - si la variable puntero a Pelota (propiedad) tiene como contenido null, significa que la caja esta vacia, porque apunta a nada
+
+En el prototipo siguiente el nombre del proyecto 'Main' se cambia al nombre que le pongas a tu proyecto
+
+public class Main {
+    public static void main(String[]args){
+          EnvaseCarton ec = new EnvaseCarton();   //crea un envase
+          Pelota p1=new Pelota(5);                //crea instancia con serie 5
+          Pelota r1 = ec.metePelota(p1);          //trata de meter pelota 5 y recibe confirmacion de si se pudo
+          if(p1==r1)System.out.println("NO entro"+": "+p1.dameTuSerie()); //si devuelve la misma direccion significa que la pelota NO entro
+          else System.out.println("SI entro"+": "+p1.dameTuSerie());      //si devuelve null significa que le pelota entro
+          Pelota p2=new Pelota(6);                //crea otra instancia con serie 6
+
+          if(p2==r2)System.out.println("NO entro"+": "+p2.dameTuSerie()); //si devuelve la misma direccion significa que la pelota NO entro
+          else System.out.println("SI entro"+": "+p2.dameTuSerie());      //si devuelve null significa que le pelota entro
+          Pelota r2 = ec.metePelota(p2);                          //trata de meter pelota 6 y recibe confirmacion de si se pudo
+          Pelota saca1 = ec.damePelota();                         //trata de sacar la pelota que haya en el envase
+          if(saca1!=null)System.out.println(saca1.dameTuSerie()); //imprime serie si es que habia pelota, deberia imprimir puntero no null
+          else System.out.println(saca1);                         //imprime el valor del puntero si es null
+          Pelota saca2 = ec.damePelota();                         //trata de sacar la pelota que haya, otra vez
+          if(saca2!=null)System.out.println(saca2.dameTuSerie()); //imprime serie si es que habia pelota
+          else System.out.println(saca2);                         //imprime el valor del puntero si es null, deberia imprimir null
+    }
+}
+class EnvaseCarton {
+    //debes completar el codigo escribiendo el metodo constructor, la propiedad, metodos metePelota y damePelota
+    //debes preguntarte si todos los objetos de esta clase deben inicializarse con el mismo valor y porque
+    //debes preguntarte como se representa la caja vacia y como llena
+    //debes preguntarte como se rechaza agregar otra Pelota si esta llena
+    //el null que retorna metePelota sirve para avisar que no se almaceno 
+}
+
+class Pelota {
+  //debes completar el codigo escribiendo el metodo constructor, la propiedad y metodo dameTuSerie
+  //debes preguntarte si cada pelota que creas con este molde debe incicializarse con numero de serie distinto
+  //debes imaginar que dameTuSerie es lo mismo que mirar el numero de serie impreso en la pelota por la fabrica
+}
+
+
+El esqueleto de programa arriba se representa en UML de la siguiente forma
+
+                 |          Aplicacion Main             |    //equivale al metodo "main"
+                 +---+------------------------------+---+    
+                    / \                            / \         
+                    \ /                            \ /      
+                     |                              |       
+                     |                              |
+          +----------+-----------+        +----------+----------+
+          |     EnvaseCarton     |        |        Pelota       |
+          +----------------------+        +---------------------+
+          |  - Pelota pel        |------->|  - int serie        | //hay una flecha que apunta a Pelota porque esa variable es puntero
+          +----------------------+        +---------------------+
+          | + EnvaseCarton       |        |  + Pelota           |
+          | + Pelota metePelota  |        |  + int dameTuSerie  |
+          | + Pelota damePelota  |        +---------------------+
+          +----------------------+
+
+Instrucciones:
+   - puedes probar usando el ejemplo mas abajo, pero la plataforma usa numeros generados randomicamente
+   - PA3P solo prueba las clases EnvaseCarton y Pelota, no main
+
+Ejemplo: 
+- si ejecutas el main de arriba: 
+
+- debe imprimir: 
+              true      //almaceno la pelota con numero de serie 5
+              false     //rechazo almacenar pelota con numero de serie 6 por estar lleno
+              5         //saco e imprimio el numero de serie de la pelota almacenada
+              null      //trato de sacar otra pelota pero estaba vacio, como debe ser

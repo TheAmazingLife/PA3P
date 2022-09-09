@@ -1,0 +1,59 @@
+PROBLEMA No. 25
+En este ejercicio debes reforzar los conceptos de "propiedad" o "estado interno", "accesor o getter" y "mutator o setter"
+ -en algunas aplicaciones puede haber metodos que cumplen ambos roles: getter y setter
+ -en algunas aplicaciones puede haber metodos setter que muten las variables de clase sin que se pasen parametros
+ -un getter no necesariamente retorna directamente el contenido de una propiedad privada, se puede otorgar un retorno que es funcion este
+
+Conceptos:
+  - propiedad: variable de clase de objeto, pueden ser de cuaquier tipo incluidos los punteros a otros objetos 
+  - estado interno: es el conjunto de valores que tienen las propiedades en un momento dado, puede ir cambiando al ejecutarse los metodos
+  - mutator o setter: asi se les llama a los metodos que modifican las variables de la clase (propiedades)
+  - accesor o getter: asi se les llama a los metodos que retornan valores en funcion de los contenidos de las variables de clase o propiedades
+  - constante Java: es una propiedad de la clase que se declara como si fuera variable publica estatica, e inicializada:
+         ejemplo: public static final int VOLUMEN=500; // decalaracion que permite referirse al valor si instancias:
+         ejemplo de uso: if(x == Bebida.VOLUMEN) { ... }
+  - aunque en Java se pueden inicializar las variables en la declaracion misma, NO la usaremos, salvo en el caso de las constantes
+    y otros casos justificados
+  - el caso de la capacidad maxima de la bebida en este ejercicio, es uno en el que la constante se inicializa en la declaracion misma.
+  - haremos lo que sugiere la Orientacion al Objeto (OO): las propiedades son variables que reciben su valor inicial en lo constructores,
+    aunque el valor inicial por defecto sea el mismo que le ponemos
+
+ 
+
+
+
+          |      Aplicacion Main     |  //equivale la clase que contiene al metodo "main"
+          +-------------+------------+    
+                       / \        
+                       \ /      
+                        |      
+                        |     
+               +--------+---------+              
+               |       Bebida     |      
+               +------------------+                
+               |  +int VOLUMEN    | //defina la capacidad maxima del envase: publica, estatica, final
+               |  -int contenido  |       
+               |  -int serie      | 
+               +------------------+
+               |     +Bebida      | //es constructor
+               |     +getSerie    |
+               |     +llenar      |
+               |     +beber       |
+               +------------------+ 
+
+
+Meta 1:  crear la aplicacion representada en el diagrama UML completando las clases de modo que:
+           - Bebida tenga una capacidad maxima expresada en mililitros por la constante VOLUMEN: 500 ml
+           - en el momento de la construcción del contenedor Bebida (new), no se pueda llenar pero si en forma posterior
+           - al "llenar" se la pasan una cantidad de mililitros (no negativos) que si supera el maximo debe limitarse a este, el exceso se pierde
+           - solo se llenara una vez pero despues de ser fabricada
+           - al beber, se retornan los mililitros requeridos, como entero, si se piden mas de lo que hay, se entrega lo que queda
+ 
+           = prueba desde "main":
+                - crea un objeto de Bebida
+                - llenarla con mas mililitros que la maxima
+                - pedir su serie
+                - beberla en sorbos y sumarlos para comprobar que solo se bebio hasta el maximo (llamar a beber mas de una vez y en cantidades distintas)
+                - crear un segundo objeto de Bebida
+                - llenarla con menos mililitros de la capacidad
+                - beberla y comprobar que no entrego mas de lo que se lleno

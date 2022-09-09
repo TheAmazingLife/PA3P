@@ -1,0 +1,88 @@
+PROBLEMA No. 28
+
+
+Conceptos: Diseño e implementacion incremental de aplicaciones, reutilizacion
+
+Enunciado: 
+El trabajo consiste en crear un expendedor de bebidas, que cada vez que reciba una moneda, retorne siempre una nueva bebida
+si queda alguna en su deposito interno, si no hay, devuelve null y se "traga" la moneda (no la devuelve). El Expendedor "magicamente"
+crea la cantidad de bebidas que se piden y las agrega al deposito  en su constructor. "main" no le pide las "bebidas" directamente a deposito,
+lo hace comprandole al expendedor, quien se las pide al deposito. Que se trague la moneda significa que solo queda en la variable parametro, y desaparece
+al terminar la ejecucion del metodo, como todas las variables locales de cualquier metodo. 
+
+Recuerda:  al quedar un objeto sin una variable que lo apunte, desaparece.
+
+
+
+En este paso se le agregan los siguientes elementos:
+- las bebidas cuentan con numero de serie: 0,1, 2, ...
+- el expendedor tiene una capacidad limitada de bebidas" (un deposito interno)
+
+Para probar desde main:
+     - crea un Expendedor
+     - crea una Moneda
+     - compra unas bebidas a expendedor, las bebes e imprimes sus numeros de serie
+     - el Deposito puede ser el mismo que hiciste en problema anterior
+
+
+El diagrama UML que responde al enunciado es el siguiente:
+ 
+
+                          |      Aplicacion Main      |  //equivale al metodo "main"
+                          +--------------+-------+----+    
+                                        / \     / \     
+                                        \ /     \ /
+                                         |       |
+                                         |       +---------------------------+
+                           +-------------+------------+                      |
+                           |       Expendedor         |                      |
+                           +--------------------------+                      |
+                           |  -Deposito               +--------------+       |
+                           +--------------------------+              |       |
+                           |  +Expendedor             |              |       |
+                           |  +comprarBebida          |              |       |            
+                           +---+-----------------+----+              |       |
+                              / \                |                   |       |
+                              \ /                |                   |       |
+                               |                 |                   |       |
+             +-----------------+                 |                   |       |
+             |                                  \ /                 \ /      |
+  +----------+----------+           +------------+----------+--+  +--+-------+----------+
+  |      Deposito       |           |         Bebida           |  |       Moneda        |       
+  +---------------------+           +--------------------------+  +---------------------+
+  | -ArrayList          |< >--------+  -int serie              |  
+  |                     |           +--------------------------+
+  +---------------------+           |  +Bebida                 |  
+  | +Deposito           |           |  +getSerie               | 
+  | +addBebida          |           |  +beber                  |  
+  | +getBebida          |           +--------------------------+
+  +-----------+---------+             
+             / \             
+             \ /  
+              |                           
+  +-----------+----------+  //el mismo deposito que hiciste en un problema anterior,
+  |      ArrayList       |  //que contiene el arraylist
+  +----------------------+  
+
+
+
+
+
+
+
+
+Meta 1:  
+  -------------------------------       
+         - debes crear las clases descritas en el diagrama UML de arriba
+         - el numero de elementos del deposito se pasa a traves del constructor de Expendedor
+         - el expendedor debe crear las bebidas y agregarlas al Deposito de una cada vez
+         - el metodo comprarBebida debe recibir la Moneda y retornar una Bebida desde el deposito
+
+         - cada bebida debe tener un numero de serie unico y ordenado en el rago 0 a n-1, que se le pasa por medio el constructor
+         - el numero de serie puede ser el mismo que usas en la variable para controlar el ciclo iterativo dentro del que creas y agregas bebidas al deposito
+         - la capacidad del deposito se pasa en el constructor de Expendedor
+         - Bebida solo tiene un metodo publico, 'beber', que retorna (no imprime) un String con la palabra "gluglu" 
+         - si el deposito queda vacio, se debe devolver null,lo que significa que se acabaron las bebidas
+         - si se acabaron las bebidas, no se devuelve la moneda
+         - no hay vuelto
+         - las bebidas son diferenciadas solo por el numero de serie (tambien por su puntero this, que no usaremos)

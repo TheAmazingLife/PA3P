@@ -1,0 +1,62 @@
+PROBLEMA No. 24
+Conceptos: incializacion de propiedades delegadas, reutilizacion por composicion (subcontratacion), encapsulamiento, accessor.
+Debes revisar los conceptos en el material de del curso (PPT's o plataforma web)
+
+Composicion:      objetos que tienen punteros a otros objetos que forman parte de ellos
+Encapsulamiento:  objetos que esconden los punteros a los objetos que los componen mediante "private"
+Subcontratacion:  objetos que "aparentan" ser los que hacen algo pero en realidad lo hace otro que tienen como componente encapsulado 
+
+
+ En UML la composicion de clases se representa graficamente:
+
+
+          |     Aplicacion Main    |  //equivale al metodo "main"
+          +-----------+------------+    
+                     / \              //main crea usando "new" y prueba una instancia de           
+                     \ /              //CuatroOperaciones
+                      |
+                      |
+      +---------------+-----------------+
+      |        CuatroOperaciones        |
+      +---------------------------------+
+      |  - SumaResta                    | //puntero privado a instancia de SumaResta, no hay flotantes
+      +---------------------------------+
+      |  + CuatroOperaciones            | //es constructor
+      |  + multiplica                   |
+      |  + divide                       |
+      |  + suma                         |
+      |  + resta                        |
+      +----------------+----------------+
+                      / \                 //CuatroOperaciones crea usando "new" y usa una instancia de 
+                      \ /                 //SumaResta
+                       |
+                       |
+      +----------------+----------------+
+      |         SumaResta               | //SumaResta se usa como objeto Componente private
+      +---------------------------------+
+      |  - flotante uno                 | //CuatroOperaciones no debe declararlas de nuevo, usa estas mismas
+      |  - flotante dos                 | //son propiedades privadas usadas en forma delegada
+      +---------------------------------+
+      |  + SumaResta                    | //es constructor
+      |  + suma                         |
+      |  + resta                        |
+      |  + getUno                       | //debes averiguar en este ejercicio que pasa si no estan los metodos getUno y getDos
+      |  + getDos                       |
+      +---------------------------------+                       
+
+el diamante esta pegado a la clase compuesta y la linea termina en la clase componente.
+La composicion es uno de los mecanismos de reutilizacion de clases que ofrece la Orientacion 
+al Objeto. Para que una clase pueda componerse de otra, debe declarar como propiedad una
+variable de la clase componente. Las capacidades publicas de la clase compuesta deben ser
+las cuatro, pero deben "delegar" la operacion en la clase componente, esto es, llamar a los metodos
+que realizan la funcion.
+
+
+
+Meta 1:  Se puede crear la clase CuatroOperaciones desde la nada, por ser simple, pero imaginaremos que 
+         vale la pena reutilizar las propiedades y capacidades de la clase SumaResta,
+         por lo tanto debes crear la aplicacion representada en el diagrama UML de arriba.
+         Si lo haces correctamente, la clase compuesta se vera como si ella misma hubiera
+         implementado las cuatro capacidades.
+         Debes descubrir de que manera los parametros de un constructor pasan directamente como parametros de otro. 
+         NO debes declarar propiedades en CuatroOperaciones, solo debes usar las de SumaResta

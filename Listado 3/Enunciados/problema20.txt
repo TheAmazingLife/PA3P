@@ -1,0 +1,53 @@
+PROBLEMA No. 20
+
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/20/pelotasola.jpg
+
+Enunciado: deberas agregar a la clase Pelota en el esqueleto de programa mas abajo:
+  - el metodo constructor Pelota que recibe el numero de serie como parametro y lo almacena en propiedad private int
+  - el metodo dameTuSerie que retorna el numero de serie almacenado en propiedad private int
+  - cada instancia creada a partir de la class Pelota debe tener un numero de serie que se le pasa como parametro del constructor
+
+En el prototipo siguiente el nombre del proyecto 'Main' se cambia al nombre que le pongas a tu proyecto
+
+public class Main {
+    public static void main(String[]args){
+          Pelota p=new Pelota(5);  //creas una instancia y le imprimes un 5 como numero de serie de fabricación
+          int s = p.dameTuSerie(); //le lees su numero de serie que "imaginamos esta impreso"
+          System.out.println(s);   //lo haces visible
+    }
+}
+
+class Pelota {
+  //debes completar el codigo escribiendo el metodo constructor, la propiedad y metodo dameTuSerie
+  //debes preguntarte si cada pelota que creas con este molde debe incicializarse con numero de serie fijo o distinto
+  //debes imaginar que dameTuSerie es lo mismo que mirar el numero de serie impreso en la pelota por la fabrica
+}
+
+El esqueleto de programa arriba se representa en UML de la siguiente forma
+
+          |     Aplicacion Main    |    //equivale al metodo "main"
+          +-----------+------------+    
+                     / \                //hay un "diamante" que sale desde la clase en la que esta contenida main      
+                     \ /                //el diamante: desde la clase donde esta main se hace new de Pelota y se tiene puntero
+                      |                 //hacer un new de Pelota significa haber creado una instancia u objeto con el "molde" Pelota
+                      |
+      +---------------+----------------+
+      |            Pelota              |
+      +--------------------------------+
+      |  - int serie                   | // '-' significa private (se le llama propiedad en en OO)
+      +--------------------------------+
+      |  + Pelota      //es constructor|
+      |  + int dameTuSerie //es getter | // '+' significa public
+      +--------------------------------+
+
+Instrucciones:
+   - puedes probar usando el ejemplo, pero la plataforma usa numeros generados randomicamente
+   - getter: se llama asi a cualquier metodo normal que cumple la funcion de extraer copia del valor de una variable (propiedad) que es privada
+   - PA3P prueba solo tu clase Pelota, no a tu main
+
+Ejemplo: 
+- si se ejecuta: 
+                 Pelota p=new Pelota(5);
+                 int s = p.dameTuSerie();
+                 System.out.println(s); 
+- debe imprimir: 5

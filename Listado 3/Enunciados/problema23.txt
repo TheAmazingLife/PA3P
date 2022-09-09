@@ -1,0 +1,47 @@
+PROBLEMA No. 23
+
+Conceptos: inicializacion de propiedades, accessor o getters
+
+accessor o getters: son metodos normales cuya tarea es entregar valores de propiedades privadas de una clase
+
+¿que criterios se usan para crear un metodo constructor?
+   - el constructor es un metodo que inicializa las propiedades de una instancia de clase (objeto)
+   - si todos los objetos se inicializan con el mismo valor no es necesario pasar los valores a traves de parametros,
+     pero el metodo debe tener sentencias que inicialicen las propiedades, aunque el lenguaje las inicialice  en los
+     mismo valores, esta es una convención OO y se aplicara todo el semestre.
+   - si las propiedades de los objetos se inicializan con valores distintos, entonces se pasan esos valores a traves de parametros
+   - si la clase no tiene variables, la ejecución de cualquier metodo de la clase no afecta al propio objeto
+   - getter o accessor: metodo que "retorna valores" que son funcion de los valores de las propiedades (en particular el mismo)
+
+El presente y los proximos ejercicios se construyeron solo con propositos didacticos, para demostrar en forma sencilla como
+opera la reutilización por composicion y el uso de un constructor que iniciliza las propiedades a traves de parametros.
+Se demuestra tambien lo que es el uso de metodos conocidos como getter (accessor)
+
+   
+
+          |     Aplicacion Main    |  //equivale al metodo "main"
+          +-----------+------------+    
+                     / \             
+                     \ /
+                      |
+                      |
+      +---------------+-----------------+
+      |         SumaResta               |
+      +---------------------------------+
+      |  - flotante uno                 | // '-' significa private
+      |  - flotante dos                 |
+      +---------------------------------+
+      |  + SumaResta //es constructor   |
+      |  + suma      //es getter        | // '+' significa public
+      |  + resta     //es getter        |
+      +---------------------------------+
+
+
+
+
+Meta 1:  crear una aplicacion Java de la manera que lo has hecho en los problemas anteriores. 
+         Las propiedades se deben inicializar a traves del constructor. 
+         Las propiedades deben ser "private" y las capacidades solo retornan los valores calculados a partir de ellas.
+         La clase SumaResta debe recibir dos numeros flotantes y almacenarlos como propiedades, cuando se 
+         llamen los metodos suma o resta debe devolver la suma o la diferencia de los numeros almacenados.
+         Prueba la clase SumaResta desde el metodo main.
