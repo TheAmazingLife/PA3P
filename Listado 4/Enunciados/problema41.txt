@@ -1,0 +1,86 @@
+PROBLEMA No. 41
+Conceptos en este ejercicio: herencia, polimorfismo con clases, encapsulamiento, delegacion, metodo abstracto en super clase
+
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/41/DepositoBeb.jpg
+
+Ver: Conceptos de herencia y polimorfismo
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/HTMLS/polimorfismo.html
+
+Ver: Conceptos de herencia y polimorfismo
+Cuando debas hacer un trabajo, recuerda siempre: que los sustantivos del enunciado son los primeros candidatos a ser clases.
+
+Enunciado: 
+El trabajo consiste en crear un Deposito de Bebidas, que puede almacenarlas y devolverlas en disciplina FIFO
+Las Bebidas las almacena sin distinguir cual es la sub clase a la que pertenecen: Cocacola, Sprite, Kem y Fanta
+Cada Bebida tendra un numero de serie y al beberlas generan el String: cocacola o fanta o kem o sprite 
+Al retirar Bebidas del Deposito, si ya se acabaron, retorna nada (null). El metodo beber() de la super clase debe
+ser abstracto.
+
+
+- Bebidas creadas polimorficamente se almacenan en un Deposito sin que este se entere de que hay diferencias entre ellas.
+- el Deposito aparenta ser el que almacena la Bebidas, pero en realidad tiene internamente un ArrayList que las almacena en forma delegada.
+- desde el punto de vista externo, el Deposito solo muestra una interfaz formada por sus metodos publicos.
+
+El encapsulamiento, en este ejercicio, consiste en esconder un objeto de clase ArrayList para que se vea como un Deposito. La idea es que quien 
+sea el usuario del Deposito no "tenga idea" que internamente tiene un ArrayList. El deposito usa la disciplina FIFO: una cola o fila.
+FIFO: Si se remueve siempre el elemento [0] de ArrayList cuando el Deposito deba entregar una Bebida y como siempre el agregar es al final, resulta simple implementar. 
+La gran ventaja del encapsulamiento es que el usuario no vea la complejidad interna del Deposito.
+
+El polimorfismo permite que el Deposito solo trate a los objetos que son de diferentes sub clases como si solo fueran de la super clase Bebida, porque no
+no es relavante que distinga las diferencias para almacenarlas.
+
+Este tipo de depositos lo usaras en otros trabajos y proyecto final del curso. A manera de ejercitacion puedes inmaginar como equivalencia un zoologico
+que se comporta de manera similar al Deposito desde la perspectiva de tener animales dentro de el. 
+
+ArrayList:
+  - remove(i): remueve el i-esimo elemento y retorna puntero al objeto removido, todos se corren un lugar y disminuye size()
+  - add( )   : agrega un elemento al final aumentando el size()
+  - size()   : retorna el numero de elementos almacenados en el ArrayList
+  - get(i)   : retorna el puntero al i-ésimo elemento, pero No lo elimima del ArrayList. Te permite llamar los métodos sin sacarlo
+usa: ArrayList var;
+     var = new ArrayList(); //el nombre de la variable puede ser otro 
+
+
+
+          |      Aplicacion Main     | 
+          +-------------+-------+----+    
+                       / \     / \         +-------------------+
+                       \ /     \ /         |  abstract Bebida  | 
+                        |       |          +-------------------+
+                        |       +----------|     -int          | //numero de serie
+                        |                  +-------------------+
+                        |       +--------->|      +Bebida      | //recive como parametro un int
+                        |       |          |      +getSerie    | //es concreto
+                        |       |          | +abstract beber   | //es abstracto
+                        |       |          +-----------+-------+
+          +-------------+-------+----+                / \
+          |          Deposito        |               /___\      //extienden a Bebida, "son una" Bebida
+          +--------------------------+                 |
+          |  -ArrayList              |        +--------+--------+---------+
+          +--------------------------+        |        |        |         |
+          |  +Deposito               |    +---+---+ +--+---+ +--+---+ +---+----+  
+          |  +addBebida              |    |Sprite | |Fanta | | Kem  | |CocaCola| 
+          |  +getBebida              |    +-------+ +------+ +------+ +--------+
+          +-------------+------------+    |       | |      | |      | |        |
+                       / \                +-------+ +------+ +------+ +--------+ 
+                       \ /                |-beber | |+beber| |+beber| ||+beber |
+                        |                 +-------+ +------+ +------+ +--------+               
+          +-------------+------------+   
+          |         ArrayList        |   //el mismo que en otro problema anterior para bebida tipo unico   
+          +--------------------------+   //mas adelante NO sera necesario poner ArrayList ni otras clases de biblioteca en UML, solo como variables   
+ 
+
+
+Meta 1:  crear la aplicacion representada en el diagrama UML completando las clases de modo que:
+           - Deposito tenga como componente encapsulado a ArrayList como un almacen FIFO
+           - si no hay bebidas, Deposito debe retornar null
+           - el metodo beber de Bebida es abstracto pero returna un String
+           - los metodos concretos beber de cada sub clase de Bebida deben retornar un String que diga el nombre de la clase
+             pero con minuscula: "sprite", "fanta", ...
+           = prueba desde "main":
+                - crea un par objetos de clase Deposito
+                - crea instancias polimorficas de Bebida con numeros de serie distintos, de la sub clase que te de la gana
+                - puedes poner todas las bebidas de una sub  clase en un deposito y las de otra en el otro, tambien las puedes mezclar 
+                - retira de los Depositos las instancias de Bebida una a una e imprime lo que devuelven getSerie() y beber(), comprueba
+                  que corresponde con la serie  y tipo de bebida
+                - intenta retirar una Bebida adicional para comprobar que retorna null al estar vacio el Deposito

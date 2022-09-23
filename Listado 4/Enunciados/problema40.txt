@@ -1,0 +1,80 @@
+PROBLEMA No. 40
+Conceptos: herencia, polimorfismo con clases de Bebidas
+
+http://pa3p.inf.udec.cl/JAVA/public_html/CENTRO_JAVA/PROBLEMAS/40/bebidas.jpg
+
+Ver: Conceptos de herencia y polimorfismo
+
+El polimorfismo permite que cualquier entidad no interesada en lidiar con las diferencias entre los objetos de una taxonomia,
+solo las vea sus aspectos comunes. Los aspectos comunes de estos objetos son descritos por lo que se denomina super clase. Los
+aspectos diferentes son descritos por un conjunto de sub clases, que implementan capacidades comunes en forma diferente.
+Asi,un deposito que almacena bebidas que vienen en un mismo tipo de envase, solo las maneja en funcion de este, sin ver sus 
+diferencias de contenido ni de colores u otras caracteristicas, porque solo importa el "espacio" que usan.
+
+Cuando debas hacer un trabajo, recuerda siempre: que los sustantivos del enunciado son los primeros candidatos a ser clases.
+
+Enunciado: 
+El trabajo consiste en crear Bebidas, y sus sub clases polimorficamente. Las sub clases deben ser: Cocacola, Sprite, Kem y Fanta
+Cada Bebida tendra un numero de serie y al beberlas generan y retornan Strings: cocacola o fanta o kem o sprite. Todas las bebidas tienen
+en comun el numero de serie que se debe poder obtener usando el metodo getSerie. El metodo metodo para beberlas es de prototipo comun: public String beber(); 
+Como no se espera que las bebidas tengan un "sonido" de beber identico, el metodo beber es abstracto en la super clase. 
+Para probar tus bebidas debes usar el unico metodo de la clase siguiente desde main:
+
+
+class CreaYPruebaBebida {
+      public static void pruebaVeSerieBebe(int que, int serie){
+          Bebida b=null;
+          switch (que){
+              case 1:  b = new Sprite(serie); break;
+              case 2:  b = new Fanta(serie); break;
+              case 3:  b = new Kem(serie); break;
+              case 4:  b = new CocaCola(serie); break;
+              default: return;
+          }
+          System.out.println(b.getSerie()+": "+b.beber());  
+      }
+}
+
+
+          |      Aplicacion Main     |   //No crea instancias de Bebida ni de CreaYPruebaBebida, solo llama al metodo estatico
+          +--------------------------+
+
+                     +-------------------------------------+
+                     |         CreaYPruebaBebida           | //NO tiene propiedades
+                     +-------------------------------------+
+                     |                                     | //si no hay propiedades entonces es mejor tener metodos estaticos
+                     +-------------------------------------+
+                     |    +static void pruebaVeSerieBebe   | //se puede ejecutar sin crear una instancia, porque es estatico
+                     +-------------------------------------+
+                                   /N\
+                                   \ /      //crea N Bebidas, las prueba y desecha su puntero al terminar ejecucion del metodo
+                                    +
+                                    :       //la linea discontinua porque la variabe de tipo Bebida en CreaYPruebaBebida es local
+                                    :
+                         +----------+--------+
+                         |  abstract Bebida  | 
+                         +-------------------+
+                         |     -int          | //numero de serie
+                         +-------------------+
+                         |      +Bebida      | //recibe como parametro un int
+                         |      +getSerie    | //es concreto
+                         | +abstract beber   | //es abstracto
+                         +---------+---------+
+                                  / \
+                                 /___\      //extienden a Bebida, "son una" Bebida
+                                   |
+                      +--------+---+----+----------+
+                      |        |        |       -  |
+                  +---+---+ +--+---+ +--+---+  +---+----+  
+                  |Sprite | |Fanta | | Kem  |  |CocaCola| 
+                  +-------+ +------+ +------+  +--------+
+                  |       | |      | |      |  |        | //no necesita, solo hereda la propiedad de Bebida
+                  +-------+ +------+ +------+  +--------+
+                  |+beber | |+beber| |+beber|  |+beber  | 
+                  +-------+ +------+ +------+  +--------+
+
+
+Pon atencion:
+     - el unico metodo de la clase CreaYPruebaBebida, usa una variable puntero local de tipo Bebida.
+     - en cada caso de la sentencia switch, asigna a esa variable direcciones de objetos de diferente clase
+     - esa asignacion es posible solamente porque hay uso polimorfico de la extension de la super clase

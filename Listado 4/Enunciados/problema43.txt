@@ -1,0 +1,98 @@
+PROBLEMA No. 43
+Conceptos: herencia, polimorfismo, composicion, encapsulamiento, delegacion, reutilizacion
+
+herencia y polimorfismo: en Bebidas manejadas por deposito de manera indiferente a las diferencias entre ellas
+composicion, encapsulamiento y delegacion: Deposito y Expendedor
+reutilizacion: de Deposito des ejercicios anteriores que ahora se agregan al Expendedor, dos instancias
+
+Recuerda siempre: que los sustantivos del enunciado son los primeros candidatos a ser clases.
+
+Enunciado: 
+El trabajo consiste en crear un expendedor de bebidas, que cuenta con una entrada para  monedas, un selector numerico para
+elegir el tipo bebida y un retorno de bebida. Cada vez que se le ingresa una moneda y un numero, retorne siempre una bebida
+del tipo solicitado, si queda alguna en el deposito interno correspondiente, si no, se la "traga" la moneda (no la devuelve). 
+
+
+¿Como se modelan las entradas y salidas del Expendedor?
+Respuesta: como es un caso muy simple basta con un unico metodo: comprarBebida
+- la entrada de moneda: primer parametro, NO se hace nada con ella
+- la seleccion de bebida: un segundo parametro de tipo entero
+- el retorno: el tipo de retorno normal de un metodo que retorna una bebida
+
+
+Recuerda que:
+  - los depositos solo almacenan Bebidas, pero en tareas posteriores se deberan crear, en forma analoga, despositos para monedas
+  - por lo tanto, guarda el proyecto para que te sirva de base para la tareas 1 y 2  
+
+
+ArrayList:
+  - remove(i): remueve el i-esimo elemento y retorna puntero al objeto removido, todos se corren un lugar y disminuye size()
+  - add( )   : agrega un elemento al final aumentando el size()
+  - size()   : retorna el numero de elmentos almacenados en el ArrayList
+usa: ArrayList var;
+     var = new ArrayList(); //el nombre de la variable puede ser otro  
+
+
+
+          |      Aplicacion Main     | 
+          +-------------+-------+----+  
+                        / \     / \     //el diamante significa que "main" hace "new" de "Expendedor" y "Moneda"
+                        \ /     \ /
+                         |       |
+                         |       +------------------+
+           +-------------+------------+             |
+           |       Expendedor         |             |
+           +--------------------------+             |
+           |                          |-----+       | 
+           |  -Deposito coca          |     |       |
+           |  -Deposito sprite        |    \ /      |  
+           +--------------------------+  +--+-------+----------+
+           |  +Expendedor             |  |       Moneda        |  //la clase vacia, solo su esqueleto
+           |  +comprarBebida          |  +---------------------+
+           +------------+-------+-----+      
+                       / \     / \         +-------------------+
+                       \ /     \ /         |  abstract Bebida  | //abstracta para que no se pueda instanciar
+                        |       |          +-------------------+
+                        |       +----------|     -int          | //numero de serie
+                        |                  +-------------------+
+                        |       +--------->|      +Bebida      | //recive como parametro un int
+                        |       |          |      +getSerie    | //es concreto
+                        |       |          |      +beber       | //es concreto
+                        |       |          +-----------+-------+
+          +-------------+-------+----+                / \
+          |          Deposito        |               /___\      //extienden a Bebida, "son una" Bebida
+          +--------------------------+                 |
+          |  -ArrayList              |        +--------+---------+
+          +--------------------------+        |                  |
+          |  +Deposito               |    +---+---+          +---+----+  
+          |  +addBebida              |    |Sprite |          |CocaCola| 
+          |  +getBebida              |    +-------+          +--------+
+          +--------------------------+    |       |          |        | 
+                                          +-------+          +--------+
+                                          |+beber |          |+beber  | 
+                                          +-------+          +--------+            
+ 
+(Nota: Expendedor crea instancia en forma polimorfica, esto significa que los depositos almacenan punteros de Bebida
+ pero  se hace new en el constructor de una u otra para llenarlos. La diferencia es el nombre de cada deposito)
+
+
+Meta 1:  crear la aplicacion representada en el diagrama UML completando las clases:
+           - Expendedor endra dos Depositos internos, en uno solo almacenaras CocaCola y en el otro solo Sprite, aunque las dos
+             instancias de Deposito son polimorficas y podrias almacenar indistintamente intancias de cualquier sub clase.
+           - Expendedor tendra una metodo que hace de entrada para Moneda y selector de sub clase Bebida (1: CocaCola, 2: Sprite)
+             y de salida para Bebida.
+           - Expendedor debe crear y agregar las bebidas correspondientes a cada Desposito en cantidades iguales, la cantidad se
+             le pasa a traves de un unico parametro en el constructor del Expendedor
+           - lo numeros de serie de CocaCola parten de 100 y los de Sprite de 200 y son secuenciales   
+           - Deposito debe tener como componente encapsulado un ArrayList como un almacen de Bebida FIFO
+           - si no hay bebidas, Deposito debe retornar null
+           - el metodo beber de Bebida es concreto y retorna un String con la palabra "sabor: ", fijate en el espacio
+           - los metodos concretos beber de cada sub clase de Bebida deben retornar un String que diga el nombre de la clase
+             pero con minuscula: "cocacola" y "sprite",  debes concatenarlos a lo que retorna llamar al metodo beber de la clase Bebida:
+             "sabor: sprite", ...
+           - NO DEBES poner el String "sabor: " directamente en los metodos beber de las sub clases
+           = prueba desde "main":
+                - crea un objeto de clase Expendedor para una cantidad de Bebidas y monedas para comprarlas
+                - compra Bebidas del tipo que quieras usando la interfaz de Expendedor 
+                - comprueba que las Bebida son las que deberian imprimiendo lo que devuelven getSerie() y beber()
+                - intenta retirar una Bebida adicional para comprobar que retorna null al estar vacio el Deposito

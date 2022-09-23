@@ -1,0 +1,73 @@
+PROBLEMA No. 38
+Conceptos: herencia, extension, reutilizacion, protected
+
+
+- Una clase puede heredar capacidades y propiedades de una clase existente de la siguiente forma:
+   class Heredera extends Heredada {       ......     }  
+  si solo se quiere extender (agregar nuevos metodos), Heredera NO necesita incluir los metodos de Heradada
+
+- si se ejecuta la sentencia Heredera referencia = new Heredera(..);, la variable referencia queda apuntando a un
+  objeto que tiene los metodos declarados en Heredera, mas los metodos publicos declarados en Heredada (sin crear
+  un objeto de Heradada usando new), como si el codigo de estos metodos de Heredada formara parte, pero de
+  manera invisible invisible, del codigo de Heredera 
+
+- en el diagrama UML, la punta de la flecha GRANDE (o triangulo) esta pegada a la clase Heredada y la linea llega la clase a la clase Heredera, 
+
+- a la clase Heredada se le llama super clase y a la clase Heredera se le llama sub clase
+
+- la primera sentencia que debe tener el constructor de la sub clase es una llamada al constructor de la super clase:
+            super(-----); con los mismos argumentos del constructor la super clase.
+
+- la clase Heredera no tiene acceso directo a las propiedades declaradas en Heredada si son private, debe usar
+  los metodos accesor (getter)
+
+- la clase Heredada tambien podria declarar sus propiedades public o protected, en ese caso hay acceso directo
+
+- protected significa que solo la clase que extiende (sub clase) puede usar directamente las variables de la 
+  clase extendida (super clase) 
+        
+
+          |     Aplicacion Main    |  //equivale al metodo "main"
+          +-----------+------------+    
+                     / \              //crea y prueba una instancia
+                     \ /
+                      |
+                      |
+                      |   +---------------+-----------------+
+                      |   |         SumaResta               |
+                      |   +---------------------------------+
+                      |   |  # flotante uno                 | //'#' significa "protected"
+                      |   |  # flotante dos                 |
+                      |   +---------------------------------+
+                      |   |  + SumaResta                    |
+                      |   |  + suma                         |
+                      |   |  + resta                        |
+                      |   +---+-----------------------------+
+                      |      / \
+                      |     /___\                //la clase CuatroOperaciones hereda las
+                      |       |                  //capacidades y propiedades de SumaResta
+                     \ /      |
+      +---------------+-------+---------+
+      |        CuatroOperaciones        |
+      +---------------------------------+
+      |                                 |  //NO debes poner propiedades, se usan las de SumaResta
+      +---------------------------------+
+      |  + CuatroOperaciones            |
+      |  + multiplica                   |
+      |  + divide                       |
+      +---------------------------------+                       
+
+
+- Si reutilizas una clase de la biblioteca Java, solo debes incluir la linea import correspondiente. En tal caso,
+  lo que importas es el bytecode de la clase ya compilada y aunque no puedes ver al codigo fuente, puedes usarla.
+- Si reutilizas una clase que tu escribiste, basta con que este en alguna parte de tu proyecto, incluso en el mismo archivo  
+
+
+Meta 1:  Se puede crear la clase "CuatroOperaciones" desde la nada, pero imaginaremos que 
+         vale la pena reutilizar las propiedades y capacidades de la clase "SumaResta",
+         por lo tanto debes crear la aplicacion representada en el diagrama UML de arriba.
+         Debes hacer uso de "protected" en este caso, sin usar "accesor".
+         - para que pruebes en Netbeans:
+              - la clase a reutilizar, SumaResta, estara en el mismo archivo que CuatroOperaciones
+              - en "main" crea una instancia de "CuatroOperaciones" pasandole valores
+              - llama cada uno de los cuatro metodos e imprime los valores devueltos
