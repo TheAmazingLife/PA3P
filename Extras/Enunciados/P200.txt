@@ -1,0 +1,61 @@
+PROBLEMA No. 200
+Conceptos: Conexion polimorfica de clases de objetos
+
+- Este es un problema en el que se conectan dos clases usando punteros polimorficamente.
+- El puntero para conectar ya esta definido en una super clase Comun, debes usarlo polimorficamente
+- Debes conectar como en el diagrama UML mas abajo, usando esos punteros en los metodos constructores.
+- No debes declarar otra propiedad en las clases Uno ni Dos
+
+- Aunque lo normal es que la clase Uno se conecte con la clase Dos usando un puntero clase Dos, ej.: Dos otro; y viceversa,
+  En este ejercicio se hará de otra forma, para probar tu dominio del polimorfismo.
+
+
+class Comun {
+   protected Comun otro;
+}
+
+
+
+                             |   Aplicacion Main    | 
+     +-------------------+   +----------+-----------+  
+     |       Comun       |             / \    
+     +---------+------+--+             \ /
+              / \    / \                |
+             /___\  /___\               |
+               |      |                 |
+               |      |                 |
+               |      |                 |
+               |      |        +--------+---------+
+               |      +--------|       Uno        |<---+     
+               |               +--------+---------+    |  
+               |                       / \             |      
+               |                       \ /             |      
+               |                        |              |
+               |                        |              |        
+               |               +--------+---------+    |
+               +---------------|       Dos        |----+     
+                               +--------+---------+    
+       
+
+
+
+Meta 1:  - conectar de la forma que muestra el diagrama UML, pero las clases deben extender a Comun y usar solo el puntero polimorfico
+           que esta definido en la clase.
+         - conectar solo por medio de los metodos constructores
+         
+         - NO debes cambiar la clase Comun que se te entrega en este enunciado.
+         - debes recordar lo que tiene almacenado el puntero this y usarlo
+         - No debes declarar otra propiedad en las clases Uno ni Dos
+
+         - la tabla de retroalimentación estará vacía, eso es normal
+         - no debes imprimir nada, solo conectar
+
+
+        
+          
+        
+
+
+
+
+Volver al listado de problemas

@@ -1,0 +1,57 @@
+PROBLEMA No. 203
+Conceptos: Conexion polimorfica de clases de objetos, composicion, delegacion y retro  llamada
+
+- Este es un problema en el que se conectan dos clases usando punteros polimorficamente.
+- El puntero para conectar ya esta definido en una super clase Comun, debes usarlo polimorficamente.
+- Debes conectar como en el diagrama UML mas abajo, usando esos punteros en los metodos constructores.
+- No debes declarar otra propiedad en las clases Uno ni Dos
+
+- Aunque lo normal es que la clase Uno se conecte con la clase Dos usando un puntero clase Dos, ej.: Dos otro; y viceversa,
+  En este ejercicio se hará de otra forma, para probar tu dominio del polimorfismo.
+
+
+class Comun {
+   protected Comun otro;
+}
+
+
+
+                             |   Aplicacion Main    | 
+     +-------------------+   +----------+-----------+  
+     |       Comun       |             / \    
+     +---------+------+--+             \ /
+              / \    / \                |
+             /___\  /___\               |
+               |      |                 |
+               |      |                 |
+               |      |                 |
+               |      |        +--------+---------+
+               |      +--------|       Uno        |<---+     
+               |               +--------+---------+    |  
+               |                       / \             |      
+               |                       \ /             |      
+               |                        |              |
+               |                        |              |        
+               |               +--------+---------+    |
+               +---------------|       Dos        |----+     
+                               +--------+---------+    
+       
+
+
+
+Meta 1:  - conectar de la forma que muestra el diagrama UML, pero las clases deben extender a Comun y usar solo el puntero polimorfico
+           que esta definido en la clase.
+         - conectar solo por medio de los metodos constructores
+
+         - ambas clases deben tener un metodo "yama"
+         - la clase Uno debe ademas tener el metodo "vuelta" que "retorna" un String con la palabra "logrado"
+         - el metodo yama de la clase Uno debe llamar al metodo yama de la clase Dos.
+         - el metodo yama de la clase Dos debe llamar al metodo "vuelta" de la clase Uno.
+         - los metodos yama deben retornar el String que reciben como retorno del metodo al que invocan.
+         
+         - NO debes cambiar la clase Comun que se te entrega en este enunciado.
+         - la clase comun NO declara capacidades (metodos) por lo tanto debes usar puntero auxiliar de la subclase y hacer casting (moldaje) del puntero otro
+           para llamar su metodo.
+         - aunque NO debes declarar otras propiedades, puedes usar variable puntero local que haga casting del Comun, para llamar metodos
+
+         - en este caso la tabla de retroalimentación tendra en el String

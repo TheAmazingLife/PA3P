@@ -1,0 +1,64 @@
+PROBLEMA No. 202
+Conceptos: Conexion polimorfica de clases de objetos
+
+- Este es un problema en el que se conectan tres clases usando punteros polimorficamente.
+- El puntero para conectar ya esta definido en una super clase Comun, debes usarlo polimorficamente
+- Debes conectar como en el diagrama UML mas abajo, usando esos punteros en los metodos constructores.
+- No debes declarar otra propiedad en las clases Uno ni Dos ni Tre
+
+- Aunque lo normal es que la clase Uno se conecte con la clase Dos usando un puntero clase Dos, ej.: Dos otro; y viceversa,
+  En este ejercicio se hará de otra forma, para probar tu dominio del polimorfismo.
+
+class Comun {
+   protected Comun otro;
+}
+
+
+
+                             |   Aplicacion Main    | 
+     +-------------------+   +----------+-----------+  
+     |       Comun       |             / \    
+     +--+------+------+--+             \ /
+       / \    / \    / \                |
+      /___\  /___\  /___\               |
+        |      |      |                 |
+        |      |      |                 |
+        |      |      |                 |
+        |      |      |        +--------+---------+
+        |      |      +--------|       Uno        |<---+     
+        |      |               +--------+---------+    |
+        |      |                       / \             |   
+        |      |                       \ /             |     
+        |      |                        |              |   
+        |      |                        |              |  
+        |      |               +--------+---------+    |   
+        |      +---------------|       Dos        |    |
+        |                      +--------+---------+    |
+        |                              / \             | 
+        |                              \ /             |
+        |                               |              |
+        |                               |              |
+        |                      +--------+------+--+    |
+        +----------------------|       Tres       |----+
+                               +------------------+          
+         
+
+
+
+Meta 1:  - conectar de la forma que muestra el diagrama UML, pero las clases deben extender a Comun y usar solo el puntero polimorfico
+           que esta definido en la clase.
+         - conectar solo por medio de los metodos constructores
+ 
+         . NO son necesarios metodos adicionales a los constructores        
+         - NO debes cambiar la clase Comun.
+         - NO debes declarar otras propiedades en las clases Uno ni Dos ni Tres
+
+         - la tabla de retro alimentacion estara vacia, eso es correcto
+        
+          
+        
+
+
+
+
+Volver al listado de problemas

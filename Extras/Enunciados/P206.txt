@@ -1,0 +1,40 @@
+PROBLEMA No. 204
+[1 de 4 ] Conceptos: Conexion normal de clases de objetos, delegacion
+
+
+
+                             |   Aplicacion Main    | 
+                             +----------+-----------+  
+                                       / \    
+                                       \ /
+                                        |
+                                        |
+                                        |
+                                        |
+                                        |
+                               +--------+---------+
+                               |       Uno        |<---+     
+                               +--------+---------+    |
+                                       / \             |   
+                                       \ /             |     
+                                        |              |   
+                                        |              |  
+                               +--------+---------+    |   
+                               |       Dos        |    |
+                               +--------+---------+    |
+                                       / \             | 
+                                       \ /             |
+                                        |              |
+                                        |              |
+                               +--------+------+--+    |
+                               |       Tres       |----+
+                               +------------------+ 
+         
+
+         - conectar como muestra el diagrama UML, en composicion 
+         - cada clase tiene un metodo "yama", que no retorna nada.
+         - los metodos "yama" se invocaran en forma delegada, a partir de la clase Uno
+         - solo el metodo "yama" de la clase Tres debe invocar al metodo "objetivo" de la clase Uno
+         - la clase Uno tendra ademas un metodo de nombre "objetivo", que al ejecutarse imprime la palabra "objetivo" 
+
+Meta 1:  Si la clase Uno funciona correctamente.
